@@ -2,7 +2,7 @@
 # The source of truth for versions is pyproject.toml.
 # core ML
 torch
-transformers>=4.40
+transformers>=5.20.2
 accelerate
 sentence-transformers
 pyannote.audio>=3.1
