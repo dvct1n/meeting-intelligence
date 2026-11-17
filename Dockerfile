@@ -1,5 +1,5 @@
 # Pin the Python patch release and Debian base family for more predictable builds.
-FROM python:3.11.18-slim-bookworm
+FROM python:3.15.2-slim-bookworm
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
