@@ -43,7 +43,7 @@ Issues = "https://github.com/dvct1n/meeting-intelligence/issues"
 # Heavy ML stack (Whisper, pyannote, sentence-transformers). Needed to process real audio.
 ml = [
     "torch",
-    "transformers>=4.40",
+    "transformers>=5.20.2",
     "accelerate",
     "sentence-transformers",
     "pyannote.audio>=3.1",
