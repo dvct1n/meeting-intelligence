@@ -1,6 +1,6 @@
 # 🎙️ AI Meeting Intelligence
 
-[![CI](https://github.com/dvct1n/meeting-intelligence/actions/workflows/ci.yml/badge.svg)](https://github.com/dvct1n/meeting-intelligence/actions/workflows/ci.yml)
+[![CI](https://github.com/dvct1n/meeting-intelligence/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/dvct1n/meeting-intelligence/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)
 [![Security](https://github.com/dvct1n/meeting-intelligence/actions/workflows/security.yml/badge.svg)](https://github.com/dvct1n/meeting-intelligence/actions/workflows/security.yml)
 ![Version](https://img.shields.io/badge/version-0.2.1-blue)
@@ -28,14 +28,14 @@ flowchart LR
     J --> K
 ```
 
-| Stage | Tech |
-|---|---|
-| Speech recognition | Whisper via Hugging Face Transformers (PyTorch) |
-| Speaker diarization | `pyannote.audio` |
-| Segmentation | utterance embeddings + local-minimum similarity dips, with hard size limits |
-| Analysis | any OpenAI-compatible LLM (OpenAI, Ollama, vLLM, Groq…) or Anthropic |
-| Search | `multilingual-e5-small` embeddings + Qdrant (embedded mode or server) |
-| Serving | FastAPI (background processing), `meeting-intel` CLI, Streamlit UI |
+| Stage               | Tech                                                                        |
+| ------------------- | --------------------------------------------------------------------------- |
+| Speech recognition  | Whisper via Hugging Face Transformers (PyTorch)                             |
+| Speaker diarization | `pyannote.audio`                                                            |
+| Segmentation        | utterance embeddings + local-minimum similarity dips, with hard size limits |
+| Analysis            | any OpenAI-compatible LLM (OpenAI, Ollama, vLLM, Groq…) or Anthropic        |
+| Search              | `multilingual-e5-small` embeddings + Qdrant (embedded mode or server)       |
+| Serving             | FastAPI (background processing), `meeting-intel` CLI, Streamlit UI          |
 
 ## Quick start
 
@@ -91,15 +91,15 @@ To exercise the metric implementations separately, run `make synthetic-eval` (or
 
 Interactive docs at `/docs`. If `API_KEY` is set, send it as `X-API-Key` (every route except `/health`).
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/health` | Liveness probe |
-| `POST` | `/meetings` | Upload a recording (multipart `file`). Returns `202`; processing runs in the background. `400` bad type/empty, `413` over `MAX_UPLOAD_MB` |
-| `GET` | `/meetings` | List meetings with status and analysis |
-| `GET` | `/meetings/{id}` | Full transcript, chunks and analysis |
-| `GET` | `/meetings/{id}/export` | The whole meeting as a Markdown report |
-| `DELETE` | `/meetings/{id}` | Remove a meeting and its vectors (`409` while it is still processing) |
-| `POST` | `/search` | `{"query": "...", "meeting_id": null, "limit": 5}` → semantic search |
+| Method   | Path                    | Description                                                                                                                               |
+| -------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET`    | `/health`               | Liveness probe                                                                                                                            |
+| `POST`   | `/meetings`             | Upload a recording (multipart `file`). Returns `202`; processing runs in the background. `400` bad type/empty, `413` over `MAX_UPLOAD_MB` |
+| `GET`    | `/meetings`             | List meetings with status and analysis                                                                                                    |
+| `GET`    | `/meetings/{id}`        | Full transcript, chunks and analysis                                                                                                      |
+| `GET`    | `/meetings/{id}/export` | The whole meeting as a Markdown report                                                                                                    |
+| `DELETE` | `/meetings/{id}`        | Remove a meeting and its vectors (`409` while it is still processing)                                                                     |
+| `POST`   | `/search`               | `{"query": "...", "meeting_id": null, "limit": 5}` → semantic search                                                                      |
 
 ```bash
 curl -F "file=@standup.mp3" http://localhost:8000/meetings
