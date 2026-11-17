@@ -14,16 +14,20 @@ def test_settings_defaults(monkeypatch):
     assert s.max_upload_mb == 500 and s.qdrant_url is None and s.llm_provider == "openai"
 
 
-def test_settings_from_env(monkeypatch):
+def test_settings_from_env(monkeypatch, tmp_path):
     monkeypatch.setenv("DIARIZE", "false")
     monkeypatch.setenv("WHISPER_LANGUAGE", " vi ")
     monkeypatch.setenv("LLM_PROVIDER", "Anthropic")
     monkeypatch.setenv("API_KEY", "k")
     monkeypatch.setenv("MAX_UPLOAD_MB", "12")
-    monkeypatch.setenv("DATA_DIR", "/tmp/xyz")
+    monkeypatch.delenv("QDRANT_PATH", raising=False)
+    data_dir = tmp_path / "xyz"
+    monkeypatch.setenv("DATA_DIR", str(data_dir))
     s = Settings.from_env()
     assert (s.diarize, s.whisper_language, s.llm_provider, s.api_key, s.max_upload_mb) == (False, "vi", "anthropic", "k", 12)
-    assert str(s.qdrant_path) == "/tmp/xyz/qdrant"
+    # Use the platform-native temporary path instead of hard-coding POSIX
+    # separators, so this assertion works on both Windows and POSIX.
+    assert s.qdrant_path == data_dir / "qdrant"
 
 
 def test_fmt_time():

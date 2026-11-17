@@ -6,6 +6,7 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Fixed
 - Corrected the TOML scope of `project.dependencies` in `pyproject.toml`, restoring editable package installation and the CI test matrix.
+- Made the settings path test platform-independent by using pytest's native temporary directory instead of asserting POSIX path separators; this fixes the Windows-only test failure.
 
 ## [0.2.1] - 2026-11-17
 

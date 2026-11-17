@@ -3,20 +3,51 @@ from __future__ import annotations
 
 import uuid
 from pathlib import Path
+from typing import TYPE_CHECKING, Any
 
 from .embed import Embedder
 from .schemas import Chunk, SearchHit
 
+if TYPE_CHECKING:
+    from qdrant_client import QdrantClient
+
 COLLECTION = "meeting_chunks"
+
+
+def _payload_to_search_hit(payload: dict[str, Any] | None, score: float) -> SearchHit | None:
+    """Convert a Qdrant payload into a validated hit.
+
+    Qdrant allows points without payloads, and older or manually edited
+    collections may contain incomplete payloads. Skip those records instead
+    of failing the entire search request.
+    """
+    if payload is None:
+        return None
+
+    try:
+        return SearchHit(
+            meeting_id=payload["meeting_id"],
+            chunk_id=payload["chunk_id"],
+            score=float(score),
+            start=payload["start"],
+            end=payload["end"],
+            speakers=payload["speakers"],
+            text=payload["text"],
+            summary=payload.get("summary"),
+        )
+    except (KeyError, TypeError, ValueError):
+        # An incomplete or malformed point should not break other search hits.
+        return None
 
 
 class MeetingIndex:
     def __init__(self, embedder: Embedder, path: Path | None = None, url: str | None = None):
         self.embedder = embedder
         self.path, self.url = path, url
-        self._client = None
+        # Keep the Qdrant import lazy while giving mypy the concrete attribute type.
+        self._client: QdrantClient | None = None
 
-    def _get(self):
+    def _get(self) -> QdrantClient:
         if self._client is None:
             from qdrant_client import QdrantClient, models
 
@@ -32,6 +63,8 @@ class MeetingIndex:
                     vectors_config=models.VectorParams(size=self.embedder.dim, distance=models.Distance.COSINE),
                 )
             self._client = client
+        # The lazy initialization above guarantees a client at this point.
+        assert self._client is not None
         return self._client
 
     @staticmethod
@@ -68,14 +101,12 @@ class MeetingIndex:
         res = self._get().query_points(
             COLLECTION, query=self.embedder.embed_query(query), limit=limit, query_filter=flt, with_payload=True
         )
-        return [
-            SearchHit(
-                meeting_id=p.payload["meeting_id"], chunk_id=p.payload["chunk_id"], score=float(p.score),
-                start=p.payload["start"], end=p.payload["end"], speakers=p.payload["speakers"],
-                text=p.payload["text"], summary=p.payload.get("summary"),
-            )
-            for p in res.points
-        ]
+        hits: list[SearchHit] = []
+        for point in res.points:
+            hit = _payload_to_search_hit(point.payload, point.score)
+            if hit is not None:
+                hits.append(hit)
+        return hits
 
     def delete_meeting(self, meeting_id: str) -> None:
         from qdrant_client import models
