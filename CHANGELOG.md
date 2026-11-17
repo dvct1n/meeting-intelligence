@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+- Corrected the TOML scope of `project.dependencies` in `pyproject.toml`, restoring editable package installation and the CI test matrix.
+
 ## [0.2.1] - 2026-11-17
 
 ### Added

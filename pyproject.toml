@@ -21,11 +21,6 @@ classifiers = [
     "Topic :: Multimedia :: Sound/Audio :: Speech",
 ]
 
-[project.urls]
-Homepage = "https://github.com/dvct1n/meeting-intelligence"
-Repository = "https://github.com/dvct1n/meeting-intelligence"
-Issues = "https://github.com/dvct1n/meeting-intelligence/issues"
-
 # Light core: enough to run the API, the CLI and the whole test-suite (models are injected / lazily imported).
 dependencies = [
     "pydantic>=2",
@@ -38,6 +33,11 @@ dependencies = [
     "openai>=1.30",
     "anthropic>=0.30",
 ]
+
+[project.urls]
+Homepage = "https://github.com/dvct1n/meeting-intelligence"
+Repository = "https://github.com/dvct1n/meeting-intelligence"
+Issues = "https://github.com/dvct1n/meeting-intelligence/issues"
 
 [project.optional-dependencies]
 # Heavy ML stack (Whisper, pyannote, sentence-transformers). Needed to process real audio.
