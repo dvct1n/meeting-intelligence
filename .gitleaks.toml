@@ -1,0 +1,9 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Obvious non-secret placeholders used in the public environment template."
+regexes = [
+  '''sk-\.\.\.''',
+  '''hf_\.\.\.''',
+]

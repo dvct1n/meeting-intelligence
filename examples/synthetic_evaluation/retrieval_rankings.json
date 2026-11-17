@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Khi nào nhóm phát hành bản thử nghiệm?",
+    "relevant": [{"meeting_id": "synthetic-m001", "chunk_id": 1}],
+    "ranked": [
+      {"meeting_id": "synthetic-m001", "chunk_id": 2},
+      {"meeting_id": "synthetic-m001", "chunk_id": 1},
+      {"meeting_id": "synthetic-m001", "chunk_id": 0},
+      {"meeting_id": "synthetic-m001", "chunk_id": 3},
+      {"meeting_id": "synthetic-m002", "chunk_id": 0},
+      {"meeting_id": "synthetic-m001", "chunk_id": 4}
+    ]
+  },
+  {
+    "query": "Tình trạng kiểm thử QA hiện tại như thế nào?",
+    "relevant": [{"meeting_id": "synthetic-m002", "chunk_id": 0}],
+    "ranked": [
+      {"meeting_id": "synthetic-m002", "chunk_id": 0},
+      {"meeting_id": "synthetic-m002", "chunk_id": 3},
+      {"meeting_id": "synthetic-m001", "chunk_id": 2},
+      {"meeting_id": "synthetic-m002", "chunk_id": 1},
+      {"meeting_id": "synthetic-m003", "chunk_id": 0},
+      {"meeting_id": "synthetic-m002", "chunk_id": 4}
+    ]
+  },
+  {
+    "query": "Ai phụ trách tài liệu triển khai và khi nào hoàn thành?",
+    "relevant": [{"meeting_id": "synthetic-m003", "chunk_id": 2}],
+    "ranked": [
+      {"meeting_id": "synthetic-m003", "chunk_id": 0},
+      {"meeting_id": "synthetic-m003", "chunk_id": 1},
+      {"meeting_id": "synthetic-m003", "chunk_id": 2},
+      {"meeting_id": "synthetic-m001", "chunk_id": 3},
+      {"meeting_id": "synthetic-m003", "chunk_id": 4},
+      {"meeting_id": "synthetic-m002", "chunk_id": 2}
+    ]
+  },
+  {
+    "query": "Nhóm còn phải xử lý lỗi nào trên Android?",
+    "relevant": [{"meeting_id": "synthetic-m004", "chunk_id": 1}],
+    "ranked": [
+      {"meeting_id": "synthetic-m004", "chunk_id": 4},
+      {"meeting_id": "synthetic-m004", "chunk_id": 3},
+      {"meeting_id": "synthetic-m004", "chunk_id": 0},
+      {"meeting_id": "synthetic-m002", "chunk_id": 1},
+      {"meeting_id": "synthetic-m004", "chunk_id": 1},
+      {"meeting_id": "synthetic-m005", "chunk_id": 0}
+    ]
+  },
+  {
+    "query": "Ai theo dõi trạng thái duyệt ứng dụng trên cửa hàng?",
+    "relevant": [{"meeting_id": "synthetic-m005", "chunk_id": 0}],
+    "ranked": [
+      {"meeting_id": "synthetic-m005", "chunk_id": 0},
+      {"meeting_id": "synthetic-m005", "chunk_id": 1},
+      {"meeting_id": "synthetic-m004", "chunk_id": 2},
+      {"meeting_id": "synthetic-m005", "chunk_id": 3},
+      {"meeting_id": "synthetic-m001", "chunk_id": 0},
+      {"meeting_id": "synthetic-m005", "chunk_id": 4}
+    ]
+  }
+]

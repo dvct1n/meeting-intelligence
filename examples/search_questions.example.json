@@ -1,0 +1,10 @@
+[
+  {
+    "query": "When do we launch the mobile app?",
+    "relevant": [{"meeting_id": "REPLACE_WITH_MEETING_ID", "chunk_id": 1}]
+  },
+  {
+    "query": "What is the state of QA?",
+    "relevant": [{"meeting_id": "REPLACE_WITH_MEETING_ID", "chunk_id": 0}]
+  }
+]

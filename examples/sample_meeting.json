@@ -1,0 +1,120 @@
+{
+  "id": "demo000001",
+  "filename": "audio.wav",
+  "created_at": "2025-07-01T09:00:00+00:00",
+  "status": "done",
+  "error": null,
+  "duration": 98.0,
+  "utterances": [
+    {
+      "start": 0.0,
+      "end": 9.0,
+      "speaker": "Speaker 1",
+      "text": "Thanks everyone for joining. The goal today is to agree on the launch date for the mobile app and who owns what."
+    },
+    {
+      "start": 10.0,
+      "end": 24.0,
+      "speaker": "Speaker 2",
+      "text": "QA finished the regression run yesterday. We have two minor bugs left, neither blocks the release."
+    },
+    {
+      "start": 25.0,
+      "end": 38.0,
+      "speaker": "Speaker 3",
+      "text": "On the backend side the new search endpoint is deployed to staging. I still need to write the migration notes."
+    },
+    {
+      "start": 39.0,
+      "end": 55.0,
+      "speaker": "Speaker 1",
+      "text": "Then let's ship on Friday the 14th. Linh, can you update the changelog and the store listing by Thursday?"
+    },
+    {
+      "start": 56.0,
+      "end": 64.0,
+      "speaker": "Speaker 2",
+      "text": "Yes, I'll take the changelog and the store listing, done by Thursday evening."
+    },
+    {
+      "start": 65.0,
+      "end": 82.0,
+      "speaker": "Speaker 3",
+      "text": "I'll finish the migration notes tomorrow. One risk: if the app-store review takes longer than two days we slip."
+    },
+    {
+      "start": 83.0,
+      "end": 98.0,
+      "speaker": "Speaker 1",
+      "text": "Agreed. Let's submit for review on Monday so we have a buffer, and Minh will monitor the review status."
+    }
+  ],
+  "chunks": [
+    {
+      "id": 0,
+      "start": 0.0,
+      "end": 38.0,
+      "speakers": [
+        "Speaker 1",
+        "Speaker 2",
+        "Speaker 3"
+      ],
+      "text": "",
+      "summary": "Status check: QA has two non-blocking bugs left and the search endpoint is on staging."
+    },
+    {
+      "id": 1,
+      "start": 39.0,
+      "end": 98.0,
+      "speakers": [
+        "Speaker 1",
+        "Speaker 2",
+        "Speaker 3"
+      ],
+      "text": "",
+      "summary": "The team settles on a Friday launch, assigns the changelog and migration notes, and plans a Monday app-store submission as a buffer."
+    }
+  ],
+  "analysis": {
+    "title": "Mobile app launch planning",
+    "summary": "The team reviewed release readiness: QA is nearly done with two minor bugs and the new search endpoint is on staging. They agreed to launch on Friday the 14th, with the app submitted for store review on Monday to leave a buffer against slow reviews.",
+    "topics": [
+      "launch date",
+      "QA status",
+      "app-store review",
+      "migration notes"
+    ],
+    "decisions": [
+      {
+        "decision": "Launch the mobile app on Friday the 14th",
+        "rationale": "The remaining QA bugs are minor and do not block the release"
+      },
+      {
+        "decision": "Submit the app for store review on Monday",
+        "rationale": "Leaves a buffer if the review takes longer than two days"
+      }
+    ],
+    "action_items": [
+      {
+        "task": "Update the changelog and the store listing",
+        "owner": "Linh",
+        "deadline": "by Thursday"
+      },
+      {
+        "task": "Finish the backend migration notes",
+        "owner": "Speaker 3",
+        "deadline": "tomorrow"
+      },
+      {
+        "task": "Monitor the app-store review status",
+        "owner": "Minh",
+        "deadline": null
+      }
+    ],
+    "speaker_summaries": {
+      "Speaker 1": "Chaired the meeting, proposed the Friday launch and the Monday submission.",
+      "Speaker 2": "Reported QA status and took the changelog and store listing.",
+      "Speaker 3": "Reported backend progress, owns the migration notes and raised the review-delay risk."
+    }
+  }
+}

@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "meeting-intelligence"
+dynamic = ["version"]
+description = "Turn long meeting recordings into structured, searchable knowledge: transcripts, speakers, decisions, action items, and semantic search."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["whisper", "speaker-diarization", "pyannote", "llm", "meeting-notes", "qdrant", "fastapi"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+]
+
+[project.urls]
+Homepage = "https://github.com/dvct1n/meeting-intelligence"
+Repository = "https://github.com/dvct1n/meeting-intelligence"
+Issues = "https://github.com/dvct1n/meeting-intelligence/issues"
+
+# Light core: enough to run the API, the CLI and the whole test-suite (models are injected / lazily imported).
+dependencies = [
+    "pydantic>=2",
+    "numpy",
+    "python-dotenv",
+    "fastapi",
+    "uvicorn[standard]",
+    "python-multipart",
+    "qdrant-client>=1.10",
+    "openai>=1.30",
+    "anthropic>=0.30",
+]
+
+[project.optional-dependencies]
+# Heavy ML stack (Whisper, pyannote, sentence-transformers). Needed to process real audio.
+ml = [
+    "torch",
+    "transformers>=4.40",
+    "accelerate",
+    "sentence-transformers",
+    "pyannote.audio>=3.1",
+]
+ui = ["streamlit>=1.37", "requests", "pandas"]
+dev = ["pytest", "pytest-cov", "httpx", "ruff==0.17.5", "mypy", "pre-commit>=4.0"]
+all = ["meeting-intelligence[ml,ui]"]
+
+[project.scripts]
+meeting-intel = "meeting_intel.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["meeting_intel*"]
+
+[tool.setuptools.dynamic]
+version = { attr = "meeting_intel.__version__" }
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.coverage.run]
+source = ["meeting_intel"]
+omit = ["meeting_intel/asr.py", "meeting_intel/diarize.py", "meeting_intel/embed.py", "meeting_intel/__main__.py"]  # need real models
+
+[tool.ruff]
+line-length = 140
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "I"]
+ignore = [
+    "E731",  # lambda assignment: used for tiny test helpers
+    "B008",  # FastAPI's Depends()/File() in argument defaults is the documented pattern
+    "B905",  # zip() without strict=: lengths are equal by construction here
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["meeting_intel", "tests"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+check_untyped_defs = true
+warn_unused_ignores = true

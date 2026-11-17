@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this project in academic work, research, or a portfolio, please cite it as follows."
+title: "AI Meeting Intelligence"
+authors:
+  - name: "dvct1n"
+version: 0.2.1
+date-released: 2026-11-17
+type: software
+license: MIT
+repository-code: "https://github.com/dvct1n/meeting-intelligence"

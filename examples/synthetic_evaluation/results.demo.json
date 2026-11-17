@@ -1,0 +1,23 @@
+{
+  "status": "SYNTHETIC DEMO ONLY — NOT MEASURED MODEL PERFORMANCE",
+  "source": "hand-written fixtures in examples/synthetic_evaluation/",
+  "sample_counts": {
+    "transcript_pairs": 1,
+    "action_item_sets": 1,
+    "search_queries": 5
+  },
+  "metrics": {
+    "wer": 0.07246376811594203,
+    "action_item_precision": 0.75,
+    "action_item_recall": 0.75,
+    "action_item_f1": 0.75,
+    "recall_at_1": 0.4,
+    "recall_at_3": 0.8,
+    "recall_at_5": 1.0
+  },
+  "not_measured": [
+    "DER: requires real or carefully simulated speaker-turn annotations and a diarization hypothesis",
+    "RTF: requires timing an actual audio-processing run on specified hardware",
+    "end-to-end quality: requires running the actual ASR, diarization, LLM, embedding, and retrieval pipeline"
+  ]
+}

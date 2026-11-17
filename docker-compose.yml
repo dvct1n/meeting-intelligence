@@ -1,0 +1,72 @@
+services:
+  api:
+    build: .
+    image: meeting-intelligence:0.2.1
+    env_file: .env
+    environment:
+      DATA_DIR: /app/data
+      HF_HOME: /home/app/.cache/huggingface
+      XDG_CACHE_HOME: /home/app/.cache
+      # To use the optional Qdrant service, set QDRANT_URL=http://qdrant:6333 in .env
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - meeting-data:/app/data
+      - hf-cache:/home/app/.cache
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped
+
+  ui:
+    image: meeting-intelligence:0.2.1
+    command: ["streamlit", "run", "ui/streamlit_app.py", "--server.address", "0.0.0.0", "--server.port", "8501"]
+    env_file: .env
+    environment:
+      API_URL: http://api:8000
+    ports:
+      - "127.0.0.1:8501:8501"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8501/_stcore/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+      - /home/app/.streamlit:rw,noexec,nosuid,size=16m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped
+
+  # Optional standalone Qdrant. Set QDRANT_URL=http://qdrant:6333 in .env,
+  # then run: docker compose --profile qdrant up --build
+  qdrant:
+    image: qdrant/qdrant:v1.20.2-unprivileged
+    profiles: ["qdrant"]
+    ports:
+      - "127.0.0.1:6333:6333"
+    volumes:
+      - qdrant-data:/qdrant/storage
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped
+
+volumes:
+  meeting-data:
+  hf-cache:
+  qdrant-data:

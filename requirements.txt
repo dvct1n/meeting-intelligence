@@ -1,0 +1,23 @@
+# Full runtime install (API + UI + models). Equivalent to:  pip install -e ".[all]"
+# The source of truth for versions is pyproject.toml.
+# core ML
+torch
+transformers>=4.40
+accelerate
+sentence-transformers
+pyannote.audio>=3.1
+# vector search + LLM clients
+qdrant-client>=1.10
+openai>=1.30
+anthropic>=0.30
+# service + UI
+fastapi
+uvicorn[standard]
+python-multipart
+streamlit>=1.37
+requests
+pandas
+# utils
+pydantic>=2
+numpy
+python-dotenv

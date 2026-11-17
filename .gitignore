@@ -1,0 +1,64 @@
+# --- secrets and credentials (never commit) ---
+.env
+.env.*
+!.env.example
+secrets/
+.secrets/
+.streamlit/secrets.toml
+credentials*.json
+service-account*.json
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+id_rsa*
+id_ed25519*
+
+# --- private data, recordings, vector DB, model caches ---
+data/*
+!data/.gitkeep
+private_data/
+recordings/
+*.wav
+*.mp3
+*.m4a
+*.mp4
+*.flac
+*.ogg
+*.webm
+*.mkv
+*.db
+*.sqlite
+*.sqlite3
+qdrant/
+models/
+.cache/
+
+# --- python / tooling ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+*.log
+
+# --- editor / OS ---
+.idea/
+.vscode/
+.DS_Store
+
+# --- build / test artefacts ---
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Generated demo/export artefacts
+artifacts/
+demo-output/
+*.sarif

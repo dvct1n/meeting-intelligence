@@ -1,0 +1,4 @@
+Buổi họp bắt đầu lúc chín giờ. Nhóm thống nhất phát hành bản thử nghiệm vào ngày mười lăm tháng mười.
+Mai hoàn tất kiểm thử hồi quy, chuẩn bị ghi chú phát hành trước thứ sáu.
+Nam cập nhật tài liệu triển khai và gửi đội vận hành vào chiều thứ năm.
+Nhóm sẽ kiểm tra lại lỗi đăng nhập trên Androi trước khi ra mắt.
