@@ -18,6 +18,6 @@ streamlit>=1.37
 requests
 pandas
 # utils
-pydantic>=2
+pydantic>=2.14.3
 numpy
 python-dotenv
