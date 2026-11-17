@@ -23,7 +23,7 @@ classifiers = [
 
 # Light core: enough to run the API, the CLI and the whole test-suite (models are injected / lazily imported).
 dependencies = [
-    "pydantic>=2",
+    "pydantic>=2.14.3",
     "numpy",
     "python-dotenv",
     "fastapi",
