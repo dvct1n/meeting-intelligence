@@ -49,7 +49,7 @@ ml = [
     "pyannote.audio>=3.1",
 ]
 ui = ["streamlit>=1.37", "requests", "pandas"]
-dev = ["pytest", "pytest-cov", "httpx", "ruff==0.17.5", "mypy", "pre-commit>=4.0"]
+dev = ["pytest", "pytest-cov", "httpx", "ruff==0.17.5", "mypy", "pre-commit>=4.6.2"]
 all = ["meeting-intelligence[ml,ui]"]
 
 [project.scripts]
