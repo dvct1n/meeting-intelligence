@@ -7,7 +7,7 @@ accelerate
 sentence-transformers
 pyannote.audio>=3.1
 # vector search + LLM clients
-qdrant-client>=1.10
+qdrant-client>=1.20.0
 openai>=1.30
 anthropic>=0.30
 # service + UI
